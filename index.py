@@ -3,7 +3,7 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 from app import app
 from app import server
-from pages import guide_and_intro, plots_2014
+from pages import guide_and_intro, plots_2014, plots_min_max, plot_rain_snow
 
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
@@ -16,7 +16,11 @@ layout_index = html.Div([
     html.H6('Select "Guide and introduction" to get started. Otherwise, select a arbitrary page to make plots appear.'),
     dcc.Link('Guide and introduction', href='/guide_and_introduction'),
     html.Br(),
-    dcc.Link('2014 plots', href='/plots_2014'),
+    dcc.Link('2014-2015 plots', href='/plots_2014'),
+    html.Br(),
+    dcc.Link('Minimum- and maximum temperatures', href='/plots_min_max'),
+    html.Br(),
+    dcc.Link('Precipitation', href='/plot_rain_snow')
 ])
 
 
@@ -27,6 +31,10 @@ def display_page(pathname):
         return guide_and_intro.layout
     elif pathname == '/plots_2014':
         return plots_2014.layout
+    elif pathname == '/plots_min_max':
+        return plots_min_max.layout
+    elif pathname == '/plot_rain_snow':
+        return plot_rain_snow.layout
     else:
         return layout_index
 
