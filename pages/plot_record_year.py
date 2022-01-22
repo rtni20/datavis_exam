@@ -45,7 +45,7 @@ layout = html.Div([
                          {'label': 'Temperature logarithmic trend line', 'value': 'log'}
                      ], value='none'),
         dbc.Col([
-            html.H6('Which year has the most minimum records? And which year has the most maximum record?'),
+            html.H6('Which year has the most minimum temperature records? And which year has the most maximum temperature record?'),
             html.H6('Is the record years correlated? And does it seems to be linked to global warming?'),
             dcc.Graph(id='bubble_chart', style={'height': '70vh'})
         ], width=8)
