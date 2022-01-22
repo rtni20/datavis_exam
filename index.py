@@ -22,7 +22,7 @@ layout_index = html.Div([
     html.Br(),
     dcc.Link('Precipitation', href='/plot_rain_snow'),
     html.Br(),
-    dcc.Link('Yearly heat record', href='/plot_record_year')
+    dcc.Link('Yearly temperature record', href='/plot_record_year')
 ])
 
 

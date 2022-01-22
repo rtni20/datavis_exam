@@ -73,7 +73,7 @@ def update_min_plot(value):
                                       mode='lines',
                                       name='Average minimum temperature since 1880',
                                       legendrank=2,
-                                      line={'color': '#228B22'}))
+                                      line={'color': '#FFD700'}))
 
         min_plot.update_layout(title="Minimum temperatures",
                                xaxis_title="Date",
@@ -108,7 +108,7 @@ def update_max_plot(value):
                                       mode='lines',
                                       name='Average maximum temperature since 1880',
                                       legendrank=2,
-                                      line={'color': '#228B22'}))
+                                      line={'color': '#FFD700'}))
 
         max_plot.update_layout(title="Maximum temperatures",
                                xaxis_title="Date",

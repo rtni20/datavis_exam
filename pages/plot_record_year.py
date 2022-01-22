@@ -46,7 +46,7 @@ layout = html.Div([
                      ], value='none'),
         dbc.Col([
             html.H6('Which year has the most minimum records? And which year has the most maximum record?'),
-            html.H6('Does the trend lines indicate that global warming has an impact on the temperatures?'),
+            html.H6('Is the record years correlated? And does it seems to be linked to global warming?'),
             dcc.Graph(id='bubble_chart', style={'height': '70vh'})
         ], width=8)
     ]),
@@ -59,7 +59,7 @@ layout = html.Div([
 def update_trendlines(value):
     if value == 'none':
         fig = px.scatter(final_df, x='year', y='freq', size='freq', color='type',
-                         color_discrete_sequence=['#00BFFF', '#228B22'])
+                         color_discrete_sequence=['#00BFFF', '#FFD700'])
         fig.update_layout(title='Record measurements for minimum and maximum temperatures',
                           xaxis_title='Year',
                           yaxis_title='Frequency')
@@ -67,7 +67,7 @@ def update_trendlines(value):
 
     elif value == 'linear':
         fig = px.scatter(final_df, x='year', y='freq', size='freq', color='type', trendline='ols',
-                         color_discrete_sequence=['#00BFFF', '#228B22'])
+                         color_discrete_sequence=['#00BFFF', '#FFD700'])
         fig.update_layout(title='Record measurements for minimum and maximum temperatures',
                           xaxis_title='Year',
                           yaxis_title='Frequency')
@@ -76,7 +76,7 @@ def update_trendlines(value):
     else:
         fig = px.scatter(final_df, x='year', y='freq', size='freq', color='type',
                          trendline="ols", trendline_options=dict(log_x=True),
-                         color_discrete_sequence=['#00BFFF', '#228B22'])
+                         color_discrete_sequence=['#00BFFF', '#FFD700'])
         fig.update_layout(title='Record measurements for minimum and maximum temperatures',
                           xaxis_title='Year',
                           yaxis_title='Frequency')

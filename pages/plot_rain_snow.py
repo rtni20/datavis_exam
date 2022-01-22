@@ -34,7 +34,7 @@ fig1.add_trace(go.Bar(name='Monthly average 2014-2015',
 fig1.add_trace(go.Bar(name='Monthly average since 1880',
                       x=final_df['month'],
                       y=final_df['monthlyAveragePrecipitation'],
-                      marker_color='#228B22'))
+                      marker_color='#FFD700'))
 
 fig1.update_layout(barmode='group', yaxis_title='Precipitation amount (in)', xaxis_title='Date',
                    title_text='Average precipitation on monthly basis')
