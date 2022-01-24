@@ -26,6 +26,13 @@ mean_precipitation.rename(columns={'date': 'month', 'averagePrecipitation': 'mon
 final_df = pd.merge(actual_precipitation_mean, mean_precipitation, how='outer', on=['month'])
 final_df['month'] = final_df['month'].dt.strftime('%b %Y')
 
+#This is for the alternative plot
+actual_total = final_df['monthlyAverageActualPrecipitation'].sum()
+average_total = final_df['monthlyAveragePrecipitation'].sum()
+labels = ['Monthly average 2014-2015', 'Monthly average since 1880']
+values = [actual_total, average_total]
+colors = ['#00BFFF', '#FFD700']
+
 fig1 = go.Figure()
 fig1.add_trace(go.Bar(name='Monthly average 2014-2015',
                       x=final_df['month'],
@@ -46,6 +53,12 @@ fig2.add_trace(go.Scatter(x=df['date'], y=df['actualPrecipitation'],
 fig2.update_layout(yaxis=dict(tick0=0, dtick=0.1), yaxis_title='Precipitation amount (in)', xaxis_title='Date',
                    title_text='Actual Precipitation on daily basis')
 
+#alternative plot
+fig3 = go.Figure()
+fig3.add_trace(go.Pie(labels=labels, values=values, hole=.3))
+fig3.update_traces(marker=dict(colors=colors))
+
+
 layout = html.Div([
     html.H1('Weather data from New York City'),
     html.H3('Plots based on precipitation from 2014-2015 and average precipitation since 1880'),
@@ -60,7 +73,10 @@ layout = html.Div([
             html.H6('Is the monthly average of precipitation in 2014/2015 in general greater or lower compared to the average measurement since 1880?'),
             dbc.Col([
                 dcc.Graph(figure=fig1)
-            ], width=8)
+            ], width=8),
+            dbc.Col([
+                dcc.Graph(figure=fig3)
+            ], width=4)
         ]),
         dbc.Row([
             html.H5('Move the cursor over the visualisation to make the plot on the right side appear!'),

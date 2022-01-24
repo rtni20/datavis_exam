@@ -12,6 +12,21 @@ from data_frame_function import get_weather_data
 df = get_weather_data()
 df['date'] = pd.to_datetime(df['date'], format='%d-%m-%Y')
 
+# For alternative plot
+new_df = df.groupby(pd.Grouper(key='date', freq='M')).sum()
+new_df.reset_index(inplace=True)
+new_df['date'] = new_df['date'].dt.strftime('%b %Y')
+
+x = new_df['date'].tolist()
+actual_min_temp = new_df['actualMinTemp'].tolist()
+average_min_temp = new_df['averageMinTemp'].tolist()
+
+fig = go.Figure(data=go.Heatmap(
+          x=x,
+          y=['Actual minimum temperature 2014-2015', 'Average minimum temperature since 1880'],
+          z=[actual_min_temp, average_min_temp],
+          colorscale='Viridis'))
+
 layout = html.Div([
     html.H1('Weather data from New York City'),
     html.H3('Plots based on temperatures from 2014-2015 and average temperatures since 1880'),
